@@ -11,8 +11,20 @@ use rand::{thread_rng, Rng};
 #[tauri::command]
 fn omikuji(name: &str) -> String {
     let mut rng = thread_rng();
-    let rand: u32 = rng.gen_range(0..8);
-    format!("Hello, {}:{}! You've been greeted from Rust!", name, rand)
+    let rand: u32 = rng.gen_range(0..7);
+
+    let lot: String = match rand % 7 {
+        0 => return String::from("大吉"),
+        1 => return String::from("吉"),
+        2 => return String::from("中吉"),
+        3 => return String::from("小吉"),
+        4 => return String::from("末吉"),
+        5 => return String::from("凶"),
+        6 => return String::from("大凶"),
+        _ => String::from(""),
+    };
+
+    format!("Hello, {}:{}! You've been greeted from Rust!", name, lot)
 }
 
 fn main() {
