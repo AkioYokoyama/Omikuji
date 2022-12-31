@@ -9,7 +9,7 @@ use rand::{thread_rng, Rng};
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[tauri::command]
-fn omikuji(name: &str) -> String {
+fn omikuji() -> String {
     let mut rng = thread_rng();
     let rand: u32 = rng.gen_range(0..7);
 
@@ -24,7 +24,7 @@ fn omikuji(name: &str) -> String {
         _ => String::from(""),
     };
 
-    format!("Hello, {}:{}! You've been greeted from Rust!", name, lot)
+    return lot;
 }
 
 fn main() {
